@@ -6,11 +6,6 @@ body {
   margin: 0;
 }
 
-button {
-  font-family: sans-serif;
-  outline: none;
-}
-
 input {
   border: 0;
   font-size: 24px;
@@ -33,21 +28,24 @@ td {
   width: 50%;
 }
 
+.cell-with-input {
+  padding: 0;
+}
+
 td:first-child {
   border-right-width: 1px;
 }
 
-.button {
+textarea {
   border: 0;
-  background: black;
-  color: white;
-  cursor: pointer;
-  line-height: 1;
-  font-size: 24px;
-  height: 33px;
-  margin: 0 3px 0 0;
+  height: 100%;
+  margin: 0;
+  outline: none;
   padding: 0;
-  position: absolute;
-  right: 0;
-  width: 33px;
+  resize: none;
+  width: 100%;
+}
+
+.phrasebook {
+  height: 100vh;
 }

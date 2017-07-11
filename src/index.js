@@ -1,6 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import PhraseBook from './PhraseBook';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
 
-ReactDOM.render(<PhraseBook />, document.getElementById('root'));
+import PhraseBook from './components/PhraseBook';
+import reducers from './reducers';
+
+import './index.css';
+
+ReactDOM.render(
+  <Provider store={
+      createStore(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+    }>
+    <PhraseBook />
+  </Provider>,
+  document.getElementById('root')
+);
