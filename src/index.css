@@ -46,6 +46,14 @@ textarea {
   width: 100%;
 }
 
+small {
+  display: block;
+  text-align: center;
+  font-size: 32px;
+  color: lightgray;
+  border-top: 1px solid gray;
+}
+
 .phrasebook {
   height: 100vh;
 }

@@ -6,18 +6,17 @@ import { searchEntry, addEntry } from '../actions'
 const mapStateToProps = state => {
   return {
     value: state.search,
-    disabled: state.mode !== SEARCH,
-    focusOnInit: true
+    disabled: state.mode !== SEARCH
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    changeHandler: value => {
-      dispatch(searchEntry(value));
+    changeHandler: text => {
+      dispatch(searchEntry(text));
     },
-    submitHandler: value => {
-      dispatch(addEntry(value));
+    submitHandler: text => {
+      dispatch(addEntry(text));
     }
   };
 };

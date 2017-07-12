@@ -1,13 +1,7 @@
-import { ADD_ENTRY, EDIT_ENTRY, SAVE_ENTRY, DELETE_ENTRY } from '../constants/ActionTypes';
+import { SAVE_ENTRY, DELETE_ENTRY } from '../constants/ActionTypes';
 
 const _data = [
   {
-    'key': 'Lorem ipsum',
-    'value': 'Dolor met'
-  }, {
-    'key': 'Lorem ipsum',
-    'value': 'Dolor met'
-  }, {
     'key': 'Lorem ipsum',
     'value': 'Dolor met'
   }
@@ -16,14 +10,33 @@ const _data = [
 export default (state = _data, action) => {
 
   switch (action.type) {
-    case ADD_ENTRY:
-      return state;
-    case EDIT_ENTRY:
-      return state;
+
     case SAVE_ENTRY:
-      return state;
+      if (action.payload.index === null) {
+        return [
+          ...state,
+          {
+            key: action.payload.key,
+            value: action.payload.value
+          }
+        ];
+      }
+
+      return [
+        ...state.slice(0, action.payload.index),
+        {
+          key: action.payload.key,
+          value: action.payload.value
+        },
+        ...state.slice(action.payload.index, state.length)
+      ];
+
     case DELETE_ENTRY:
-      return state;
+      return [
+        ...state.slice(0, action.payload.index),
+        ...state.slice(action.payload.index, state.length)
+      ];
+
     default:
       return state;
   }
