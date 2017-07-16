@@ -21,15 +21,11 @@ table {
 }
 
 td {
-  border: 1px solid gray;
+  border: 1px solid lightgray;
   border-left: 0;
   border-right-width: 0;
   padding: 6px;
   width: 50%;
-}
-
-.cell-with-input {
-  padding: 0;
 }
 
 td:first-child {
@@ -38,22 +34,44 @@ td:first-child {
 
 textarea {
   border: 0;
+  border-top: 1px solid lightgray;
+  font-family: sans-serif;
+  font-size: 16px;
   height: 100%;
   margin: 0;
   outline: none;
-  padding: 0;
+  padding: 6px;
   resize: none;
   width: 100%;
 }
 
-small {
-  display: block;
-  text-align: center;
-  font-size: 32px;
-  color: lightgray;
-  border-top: 1px solid gray;
+textarea:last-child {
+  border-left: 1px solid lightgray;
 }
 
-.phrasebook {
+textarea::-webkit-input-placeholder {
+  color: gray;
+}
+
+textarea:focus,
+textarea:focus::-webkit-input-placeholder {
+  background: dimgray;
+  color: white;
+}
+
+small {
+  border-top: 1px solid lightgray;
+  color: lightgray;
+  display: block;
+  font-size: 32px;
+  padding-top: 6px;
+  text-align: center;
+}
+
+.full-height {
   height: 100vh;
+}
+
+.flex {
+  display: flex;
 }

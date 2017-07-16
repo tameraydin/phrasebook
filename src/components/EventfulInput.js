@@ -9,8 +9,12 @@ export default class EventfulInput extends Component {
     submitHandler: PropTypes.func.isRequired
   }
 
+  componentDidMount() {
+    this.domEl.focus();
+  }
+
   componentDidUpdate() {
-    this.field.focus();
+    this.domEl.focus();
   }
 
   render() {
@@ -19,7 +23,7 @@ export default class EventfulInput extends Component {
           type='text'
           value={this.props.value}
           disabled={this.props.disabled}
-          ref={(input) => { this.field = input; }}
+          ref={(el) => { this.domEl = el; }}
           onChange={event => {
             this.props.changeHandler(event.target.value);
           }}

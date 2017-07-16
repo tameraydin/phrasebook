@@ -1,9 +1,16 @@
-import { ADD_ENTRY, SAVE_ENTRY, SEARCH_ENTRY } from '../constants/ActionTypes';
+import { ADD_ENTRY, EDIT_ENTRY, SAVE_ENTRY, SEARCH_ENTRY } from '../constants/ActionTypes';
 
 export const addEntry = text => {
   return {
     type: ADD_ENTRY,
     payload: { text }
+  };
+};
+
+export const editEntry = (key, value, index) => {
+  return {
+    type: EDIT_ENTRY,
+    payload: { key, value, index }
   };
 };
 

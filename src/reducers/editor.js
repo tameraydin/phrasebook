@@ -14,7 +14,12 @@ export default (state = {...defaultState}, action) => {
       return {...defaultState, key: action.payload.text};
 
     case EDIT_ENTRY:
-      return {...action.payload};
+      return {
+        ...defaultState,
+        key: action.payload.key,
+        value: action.payload.value,
+        index: action.payload.index
+      };
 
     case SEARCH_ENTRY:
       return {...defaultState};

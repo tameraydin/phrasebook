@@ -13,15 +13,15 @@ export default class KeyValueEditor extends Component {
   submitHandler(el, value) {
     value = value.trim();
 
-    let otherField = el.isEqualNode(this.keyField)
-      ? this.valueField
-      : this.keyField;
+    let otherField = el.isEqualNode(this.keyDomEl)
+      ? this.valueDomEl
+      : this.keyDomEl;
 
     if (value) {
       if (otherField.value.trim()) {
         return this.props.submitHandler(
-          this.keyField.value.trim(),
-          this.valueField.value.trim());
+          this.keyDomEl.value.trim(),
+          this.valueDomEl.value.trim());
       } else {
         return otherField.focus();
       }
@@ -31,25 +31,25 @@ export default class KeyValueEditor extends Component {
   }
 
   tabHandler(el) {
-    if (el.isEqualNode(this.keyField)) {
-      this.valueField.focus();
+    if (el.isEqualNode(this.keyDomEl)) {
+      this.valueDomEl.focus();
     } else {
-      this.keyField.focus();
+      this.keyDomEl.focus();
     }
   }
 
   render() {
     return (
-      <div>
+      <div className="flex">
         <EventfulTextarea
-            ref={(el) => { this.keyField = el && el.field; }}
+            ref={(comp) => { this.keyDomEl = comp && comp.domEl; }}
             defaultValue={this.props.keyText}
             tabHandler={this.tabHandler.bind(this)}
             submitHandler={this.submitHandler.bind(this)}
             cancelHandler={this.props.cancelHandler}
             autoFocus={true} />
         <EventfulTextarea
-            ref={(el) => { this.valueField = el && el.field; }}
+            ref={(comp) => { this.valueDomEl = comp && comp.domEl; }}
             tabHandler={this.tabHandler.bind(this)}
             submitHandler={this.submitHandler.bind(this)}
             cancelHandler={this.props.cancelHandler}

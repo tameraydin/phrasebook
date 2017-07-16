@@ -15,7 +15,7 @@ export default class EventfulInput extends Component {
   }
 
   componentDidMount() {
-    this.props.autoFocus && this.field.focus();
+    this.props.autoFocus && this.domEl.focus();
   }
 
   render() {
@@ -23,7 +23,7 @@ export default class EventfulInput extends Component {
       <textarea
           placeholder='Click here and start typing...'
           defaultValue={this.props.defaultValue}
-          ref={(input) => { this.field = input; }}
+          ref={(el) => { this.domEl = el; }}
           onKeyDown={event => {
             if ((event.keyCode === 13 || event.keyCode === 9)
                 && !event.shiftKey) {
