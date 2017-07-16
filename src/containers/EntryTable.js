@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import KeyValueTable from '../components/KeyValueTable';
+import { editEntry } from '../actions';
 
 const getContainsFunc = word => {
   word = word && word.toLowerCase();
@@ -14,7 +15,9 @@ const getContainsFunc = word => {
 
 const mapStateToProps = state => {
   let search = state.search.trim();
-  let entries = state.entries.slice();
+  let entries = state.entries.map((entry, idx) => {
+    return {...entry, index: idx}
+  });
 
   return {
     entries: search
@@ -23,8 +26,17 @@ const mapStateToProps = state => {
   };
 };
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    rowDoubleClickHandler: (...args) => {
+      dispatch(editEntry(...args));
+    }
+  };
+};
+
 const EntryTable = connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(KeyValueTable);
 
 export default EntryTable;
