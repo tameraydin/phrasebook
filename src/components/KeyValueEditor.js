@@ -42,18 +42,18 @@ export default class KeyValueEditor extends Component {
     return (
       <div className="flex">
         <EventfulTextarea
+            autoFocus={true}
+            value={this.props.keyText}
             ref={(comp) => { this.keyDomEl = comp && comp.domEl; }}
-            defaultValue={this.props.keyText}
             tabHandler={this.tabHandler.bind(this)}
             submitHandler={this.submitHandler.bind(this)}
-            cancelHandler={this.props.cancelHandler}
-            autoFocus={true} />
+            cancelHandler={this.props.cancelHandler} />
         <EventfulTextarea
+            value={this.props.valueText}
             ref={(comp) => { this.valueDomEl = comp && comp.domEl; }}
             tabHandler={this.tabHandler.bind(this)}
             submitHandler={this.submitHandler.bind(this)}
-            cancelHandler={this.props.cancelHandler}
-            defaultValue={this.props.valueText} />
+            cancelHandler={this.props.cancelHandler} />
       </div>
     );
   }

@@ -2,8 +2,16 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 export default class EventfulInput extends Component {
+  constructor(props, context) {
+    super(props, context);
+
+    this.state = {
+      value: this.props.value
+    };
+  }
+
   static propTypes = {
-    defaultValue: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired,
     submitHandler: PropTypes.func.isRequired,
     cancelHandler: PropTypes.func.isRequired,
     tabHandler: PropTypes.func.isRequired,
@@ -14,6 +22,18 @@ export default class EventfulInput extends Component {
     autoFocus: false
   }
 
+  handleChange(event) {
+    this.setState({
+      value: event.target.value
+    });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      value: nextProps.value
+    });
+  }
+
   componentDidMount() {
     this.props.autoFocus && this.domEl.focus();
   }
@@ -21,8 +41,9 @@ export default class EventfulInput extends Component {
   render() {
     return (
       <textarea
+          value={this.state.value}
+          onChange={this.handleChange.bind(this)}
           placeholder='Click here and start typing...'
-          defaultValue={this.props.defaultValue}
           ref={(el) => { this.domEl = el; }}
           onKeyDown={event => {
             if ((event.keyCode === 13 || event.keyCode === 9)

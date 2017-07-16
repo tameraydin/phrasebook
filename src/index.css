@@ -72,6 +72,15 @@ small {
   display: block;
 }
 
+.mode--add table,
+.mode--add input,
+.mode--edit table,
+.mode--edit input {
+  pointer-events: none;
+  cursor: not-allowed;
+  opacity: .5;
+}
+
 .full-height {
   height: 100vh;
 }

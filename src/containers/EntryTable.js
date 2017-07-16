@@ -2,37 +2,16 @@ import { connect } from 'react-redux';
 import KeyValueTable from '../components/KeyValueTable';
 import { editEntry } from '../actions';
 
-const getContainsFunc = word => {
-  word = word && word.toLowerCase();
-
-  return entry => {
-    let key = entry.key && entry.key.toLowerCase();
-    let value = entry.value && entry.value.toLowerCase();
-
-    return key.indexOf(word) > -1 || value.indexOf(word) > -1;
-  };
-};
-
-const isEntryBeingEdited = editIndex => {
-  return entry => {
-    return editIndex === null || entry.index !== editIndex;
-  };
-};
-
-const addIndex = (entry, idx) => {
-  return {...entry, index: idx}
-};
-
 const mapStateToProps = state => {
   let searchText = state.search.trim();
-  let entries = state.entries.map(addIndex);
+  let entries = state.entries.map(_addIndex);
 
   if (state.editor.index !== null) {
-    entries = entries.filter(isEntryBeingEdited(state.editor.index));
+    entries = entries.filter(_isEntryBeingEdited(state.editor.index));
   }
 
   if (searchText) {
-    entries = entries.filter(getContainsFunc(searchText));
+    entries = entries.filter(_getContainsFunc(searchText));
   }
 
   return {
@@ -52,5 +31,26 @@ const EntryTable = connect(
   mapStateToProps,
   mapDispatchToProps
 )(KeyValueTable);
+
+const _getContainsFunc = word => {
+  word = word && word.toLowerCase();
+
+  return entry => {
+    let key = entry.key && entry.key.toLowerCase();
+    let value = entry.value && entry.value.toLowerCase();
+
+    return key.indexOf(word) > -1 || value.indexOf(word) > -1;
+  };
+};
+
+const _isEntryBeingEdited = editIndex => {
+  return entry => {
+    return editIndex === null || entry.index !== editIndex;
+  };
+};
+
+const _addIndex = (entry, idx) => {
+  return {...entry, index: idx}
+};
 
 export default EntryTable;

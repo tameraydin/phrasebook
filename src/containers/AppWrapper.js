@@ -1,5 +1,20 @@
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Wrapper from '../components/Wrapper';
+import PropTypes from 'prop-types';
+
+class Wrapper extends Component {
+  static propTypes = {
+    className: PropTypes.string
+  }
+
+  render() {
+    return (
+      <div className={this.props.className}>
+        {this.props.children}
+      </div>
+    );
+  }
+};
 
 const mapStateToProps = state => {
   return {
@@ -7,8 +22,8 @@ const mapStateToProps = state => {
   };
 };
 
-const EntryTableContainer = connect(
+const WrapperContainer = connect(
   mapStateToProps
 )(Wrapper);
 
-export default EntryTableContainer;
+export default WrapperContainer;
