@@ -8,6 +8,7 @@ body {
 
 input {
   border: 0;
+  border-bottom: 1px solid lightgray;
   font-size: 24px;
   outline: none;
   padding: 6px;
@@ -21,9 +22,9 @@ table {
 }
 
 td {
-  border: 1px solid lightgray;
-  border-left: 0;
-  border-right-width: 0;
+  border-width: 0 0 1px 1px;
+  border-style: solid;
+  border-color: lightgray;
   padding: 6px;
   width: 50%;
 }
@@ -34,7 +35,7 @@ td:first-child {
 
 textarea {
   border: 0;
-  border-top: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
   font-family: sans-serif;
   font-size: 16px;
   height: 100%;
@@ -60,12 +61,15 @@ textarea:focus::-webkit-input-placeholder {
 }
 
 small {
-  border-top: 1px solid lightgray;
   color: lightgray;
-  display: block;
+  display: none;
   font-size: 32px;
   padding-top: 6px;
   text-align: center;
+}
+
+.mode--search small {
+  display: block;
 }
 
 .full-height {

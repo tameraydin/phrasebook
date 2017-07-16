@@ -30,7 +30,7 @@ export default class KeyValueTable extends Component {
     }
 
     let row = target.parentNode;
-    this.props.rowDoubleClickHandler(firstCell, secondCell, row.dataset.id);
+    this.props.rowDoubleClickHandler(firstCell, secondCell, parseInt(row.dataset.id, 10));
   }
 
   render() {

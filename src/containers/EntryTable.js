@@ -5,7 +5,7 @@ import { editEntry } from '../actions';
 const getContainsFunc = word => {
   word = word && word.toLowerCase();
 
-  return (entry) => {
+  return entry => {
     let key = entry.key && entry.key.toLowerCase();
     let value = entry.value && entry.value.toLowerCase();
 
@@ -13,16 +13,30 @@ const getContainsFunc = word => {
   };
 };
 
+const isEntryBeingEdited = editIndex => {
+  return entry => {
+    return editIndex === null || entry.index !== editIndex;
+  };
+};
+
+const addIndex = (entry, idx) => {
+  return {...entry, index: idx}
+};
+
 const mapStateToProps = state => {
-  let search = state.search.trim();
-  let entries = state.entries.map((entry, idx) => {
-    return {...entry, index: idx}
-  });
+  let searchText = state.search.trim();
+  let entries = state.entries.map(addIndex);
+
+  if (state.editor.index !== null) {
+    entries = entries.filter(isEntryBeingEdited(state.editor.index));
+  }
+
+  if (searchText) {
+    entries = entries.filter(getContainsFunc(searchText));
+  }
 
   return {
-    entries: search
-      ? entries.filter(getContainsFunc(search)).reverse()
-      : entries.reverse()
+    entries: entries.reverse()
   };
 };
 

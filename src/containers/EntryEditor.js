@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import KeyValueEditor from '../components/KeyValueEditor';
-import { SEARCH } from '../constants/AppModes';
-import { saveEntry, searchEntry } from '../actions'
+import { EDIT, SEARCH } from '../constants/AppModes';
+import { saveEntry, deleteEntry, searchEntry } from '../actions'
 
 class EntryEditor extends Component {
   render() {
-    if (!this.props.isOnEditMode) {
+    if (this.props.mode === SEARCH) {
       return (null);
     }
 
@@ -17,7 +17,11 @@ class EntryEditor extends Component {
           submitHandler={(key, value) => {
             this.props.saveEntry(key, value, this.props.entryIndex);
           }}
-          cancelHandler={this.props.dismissEditor.bind(null, this.props.keyText)} />
+          cancelHandler={this.props.mode === EDIT
+            ? this.props.deleteEntry.bind(
+                null, this.props.entryIndex, this.props.initialValue)
+            : this.props.dismissEditor.bind(
+                null, this.props.initialValue)} />
     );
   }
 }
@@ -27,7 +31,8 @@ const mapStateToProps = state => {
     keyText: state.editor.key,
     valueText: state.editor.value,
     entryIndex: state.editor.index,
-    isOnEditMode: state.mode !== SEARCH
+    initialValue: state.editor.initialValue,
+    mode: state.mode
   };
 };
 
@@ -36,8 +41,15 @@ const mapDispatchToProps = (dispatch) => {
     saveEntry: (...args) => {
       dispatch(saveEntry(...args));
     },
-    dismissEditor: (initialSearchText) => {
-      dispatch(searchEntry(initialSearchText));
+    deleteEntry: (entryIndex, initialValue) => {
+      if (window.confirm('Are you sure to DELETE this entry?')) {
+        dispatch(deleteEntry(entryIndex));
+      } else {
+        dispatch(searchEntry(initialValue));
+      }
+    },
+    dismissEditor: (initialValue) => {
+      dispatch(searchEntry(initialValue));
     }
   };
 };

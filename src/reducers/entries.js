@@ -1,13 +1,6 @@
 import { SAVE_ENTRY, DELETE_ENTRY } from '../constants/ActionTypes';
 
-const _data = [
-  {
-    'key': 'Lorem ipsum',
-    'value': 'Dolor met'
-  }
-];
-
-export default (state = _data, action) => {
+export default (state = [], action) => {
 
   switch (action.type) {
 
@@ -24,17 +17,17 @@ export default (state = _data, action) => {
 
       return [
         ...state.slice(0, action.payload.index),
+        ...state.slice(action.payload.index + 1, state.length),
         {
           key: action.payload.key,
           value: action.payload.value
-        },
-        ...state.slice(action.payload.index, state.length)
+        }
       ];
 
     case DELETE_ENTRY:
       return [
         ...state.slice(0, action.payload.index),
-        ...state.slice(action.payload.index, state.length)
+        ...state.slice(action.payload.index + 1, state.length)
       ];
 
     default:
