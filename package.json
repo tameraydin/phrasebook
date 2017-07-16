@@ -2,7 +2,10 @@
   "name": "phrasebook",
   "version": "0.1.0",
   "private": true,
+  "main": "main.js",
+  "homepage": "./",
   "dependencies": {
+    "electron-is-dev": "^0.2.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.5",
@@ -10,9 +13,19 @@
     "redux": "^3.7.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "react-start": "BROWSER=none react-scripts start",
+    "react-build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "electron-start": "electron .",
+    "electron-build": "electron-packager . --out=dist --asar --overwrite --all",
+    "start": "concurrently 'npm run react-start' 'wait-on http://localhost:3000/ && npm run electron-start'",
+    "build": "npm run react-build && npm run electron-build"
+  },
+  "devDependencies": {
+    "concurrently": "^3.5.0",
+    "electron": "^1.6.11",
+    "electron-packager": "^8.7.2",
+    "wait-on": "^2.0.2"
   }
 }
