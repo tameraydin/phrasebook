@@ -54,10 +54,15 @@ textarea::-webkit-input-placeholder {
   color: gray;
 }
 
-textarea:focus,
-textarea:focus::-webkit-input-placeholder {
+textarea:focus {
   background: dimgray;
+  border-color: dimgray;
+  box-shadow: 0 0 6px rgba(0, 0, 0, .5);
   color: white;
+}
+
+textarea:focus::-webkit-input-placeholder {
+  color: lightgray;
 }
 
 small {
