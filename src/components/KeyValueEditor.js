@@ -10,6 +10,10 @@ export default class KeyValueEditor extends Component {
     cancelHandler: PropTypes.func.isRequired
   }
 
+  componentDidMount() {
+    window.scroll(0, 0);
+  }
+
   submitHandler(el, value) {
     value = value.trim();
 
