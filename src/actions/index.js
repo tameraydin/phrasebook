@@ -1,10 +1,19 @@
 import {
+  SET_ENTRIES,
   ADD_ENTRY,
   EDIT_ENTRY,
   SAVE_ENTRY,
   DELETE_ENTRY,
-  SEARCH_ENTRY
+  SEARCH_ENTRY,
+  SET_MODE
 } from '../constants/ActionTypes';
+
+export const setEntries = entries => {
+  return {
+    type: SET_ENTRIES,
+    payload: { entries }
+  };
+};
 
 export const addEntry = text => {
   return {
@@ -38,5 +47,12 @@ export const searchEntry = text => {
   return {
     type: SEARCH_ENTRY,
     payload: { text }
+  };
+};
+
+export const setMode = mode => {
+  return {
+    type: SET_MODE,
+    payload: { mode }
   };
 };

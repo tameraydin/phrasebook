@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, ipcMain } = require('electron');
 const isDev = require('electron-is-dev');
 
 const path = require('path');
@@ -40,3 +40,17 @@ app.on('activate', () => {
 });
 
 app.dock.hide();
+
+ipcMain.on('retrieve-entries', (event) => {
+  setTimeout(() => {
+    event.sender.send('entries-retrieved', [
+      {key: 'a', 'value': 'b'}
+    ]);
+  }, 3000);
+});
+
+ipcMain.on('sync-entries', (event) => {
+  setTimeout(() => {
+    event.sender.send('entries-synced', null);
+  }, 3000);
+});

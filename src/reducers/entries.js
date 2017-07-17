@@ -1,8 +1,11 @@
-import { SAVE_ENTRY, DELETE_ENTRY } from '../constants/ActionTypes';
+import { SET_ENTRIES, SAVE_ENTRY, DELETE_ENTRY } from '../constants/ActionTypes';
 
 export default (state = [], action) => {
 
   switch (action.type) {
+
+    case SET_ENTRIES:
+      return action.payload.entries.slice();
 
     case SAVE_ENTRY:
       if (action.payload.index === null) {

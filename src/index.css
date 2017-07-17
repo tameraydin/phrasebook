@@ -30,6 +30,7 @@ td {
   border: 0;
   padding: 6px;
   width: 50%;
+  word-wrap: break-word;
 }
 
 td:first-child {
@@ -84,10 +85,23 @@ small {
 .mode--add table,
 .mode--add input,
 .mode--edit table,
-.mode--edit input {
-  pointer-events: none;
+.mode--edit input,
+.mode--loading table,
+.mode--loading input,
+.mode--loading textarea {
   cursor: not-allowed;
   opacity: .5;
+  pointer-events: none;
+}
+
+.mode--loading:after {
+  background: white;
+  content: "\231B";
+  font-size: 24px;
+  padding: 6px 6px 0 0;
+  right: 0;
+  top: 0;
+  position: absolute;
 }
 
 .full-height {
