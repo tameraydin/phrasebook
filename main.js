@@ -1,7 +1,5 @@
-const electron = require('electron');
+const { app, BrowserWindow } = require('electron');
 const isDev = require('electron-is-dev');
-const app = electron.app;
-const BrowserWindow = electron.BrowserWindow;
 
 const path = require('path');
 const url = require('url');
@@ -9,7 +7,10 @@ const url = require('url');
 let mainWindow;
 
 const createWindow = () => {
-  mainWindow = new BrowserWindow({width: 600, height: 600});
+  mainWindow = new BrowserWindow({
+    width: 600,
+    height: 600
+  });
 
   mainWindow.loadURL(
     isDev
@@ -20,6 +21,8 @@ const createWindow = () => {
   mainWindow.on('closed', () => {
     mainWindow = null
   });
+
+  mainWindow.setMenu(null);
 };
 
 app.on('ready', createWindow);
@@ -35,3 +38,5 @@ app.on('activate', () => {
     createWindow();
   }
 });
+
+app.dock.hide();
