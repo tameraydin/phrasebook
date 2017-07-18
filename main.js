@@ -1,6 +1,6 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const isDev = require('electron-is-dev');
-
+const settings = require('electron-settings');
 const path = require('path');
 const url = require('url');
 
@@ -42,15 +42,14 @@ app.on('activate', () => {
 app.dock.hide();
 
 ipcMain.on('retrieve-entries', (event) => {
-  setTimeout(() => {
-    event.sender.send('entries-retrieved', [
-      {key: 'a', 'value': 'b'}
-    ]);
-  }, 3000);
+  event.sender.send('entries-retrieved',
+    settings.get('entries') || []);
 });
 
-ipcMain.on('sync-entries', (event) => {
-  setTimeout(() => {
+ipcMain.on('sync-entries', (event, entries) => {
+  let observer = settings.watch('entries', () => {
     event.sender.send('entries-synced', null);
-  }, 3000);
+    observer.dispose();
+  });
+  settings.set('entries', entries);
 });

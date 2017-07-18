@@ -36,10 +36,6 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(setMode(LOADING));
       ipcRenderer.send('retrieve-entries');
       ipcRenderer.once('entries-retrieved', (event, entries) => {
-        if (!entries.length) {
-          alert('Oops. Entries could not be retrieved...');
-          entries = [];
-        }
         dispatch(setEntries(entries));
       });
     }
