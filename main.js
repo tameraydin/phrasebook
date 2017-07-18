@@ -39,7 +39,7 @@ app.on('activate', () => {
   }
 });
 
-app.dock.hide();
+app.dock && app.dock.hide();
 
 ipcMain.on('retrieve-entries', (event) => {
   event.sender.send('entries-retrieved',
