@@ -7,15 +7,6 @@ body {
   overflow-x: hidden;
 }
 
-input {
-  border: 0;
-  border-bottom: 1px solid lightgray;
-  font-size: 24px;
-  outline: none;
-  padding: 6px;
-  width: 100%;
-}
-
 table {
   border-collapse: collapse;
   table-layout: fixed;
@@ -37,6 +28,15 @@ td:first-child {
   border-right: 1px solid lightgray;
 }
 
+input {
+  border: 0;
+  border-bottom: 1px solid lightgray;
+  font-size: 24px;
+  outline: none;
+  padding: 6px;
+  width: 100%;
+}
+
 textarea {
   border: 0;
   border-bottom: 1px solid lightgray;
@@ -55,15 +55,15 @@ textarea:first-child {
   border-right: 1px solid lightgray;
 }
 
-textarea::-webkit-input-placeholder {
-  color: gray;
-}
-
 textarea:focus {
   background: dimgray;
   border-color: dimgray;
   box-shadow: 0 1px 1px rgba(0, 0, 0, .75);
   color: white;
+}
+
+textarea::-webkit-input-placeholder {
+  color: gray;
 }
 
 textarea:focus::-webkit-input-placeholder {
