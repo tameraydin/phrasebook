@@ -4,7 +4,11 @@
   "version": "0.1.0",
   "private": true,
   "main": "main.js",
-  "homepage": "./",
+  "homepage": "https://github.com/tameraydin/phrasebook",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/tameraydin/phrasebook.git"
+  },
   "dependencies": {
     "electron-is-dev": "^0.3.0",
     "electron-settings": "^3.1.4",
