@@ -9,7 +9,8 @@ let mainWindow;
 const createWindow = () => {
   mainWindow = new BrowserWindow({
     width: 600,
-    height: 600
+    height: 600,
+    title: "Phrasebook"
   });
 
   mainWindow.loadURL(
@@ -21,8 +22,6 @@ const createWindow = () => {
   mainWindow.on('closed', () => {
     mainWindow = null
   });
-
-  mainWindow.setMenu(null);
 };
 
 app.on('ready', createWindow);
@@ -38,8 +37,6 @@ app.on('activate', () => {
     createWindow();
   }
 });
-
-app.dock && app.dock.hide();
 
 ipcMain.on('retrieve-entries', (event) => {
   event.sender.send('entries-retrieved',
