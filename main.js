@@ -1,8 +1,9 @@
-const { app, BrowserWindow, Menu, ipcMain } = require('electron');
+const { app, BrowserWindow, Menu, ipcMain, dialog } = require('electron');
 const isDev = require('electron-is-dev');
 const settings = require('electron-settings');
 const path = require('path');
 const url = require('url');
+const fs = require('fs');
 
 let mainWindow;
 
@@ -30,6 +31,61 @@ const createWindow = () => {
         {
           label: 'About Application',
           selector: 'orderFrontStandardAboutPanel:'
+        },
+        {
+          type: 'separator'
+        },
+        {
+          label: 'Export',
+          accelerator: 'CmdOrCtrl+E',
+          click: () => {
+            dialog.showSaveDialog(mainWindow, {
+              defaultPath: 'my-phrasebook.json',
+              buttonLabel: 'Export',
+              showsTagField: false
+            }, (filePath) => {
+              if (!filePath) {
+                return;
+              }
+              try {
+                fs.writeFileSync(filePath, JSON.stringify(settings.get('entries') || []), 'utf-8');
+              } catch(e) {
+                dialog.showMessageBox(mainWindow, {
+                  message: 'Oops. Something went wrong...'
+                }, () => {});
+              }
+            });
+          }
+        },
+        {
+          label: 'Import',
+          accelerator: 'CmdOrCtrl+I',
+          click: () => {
+            dialog.showOpenDialog(mainWindow, {
+              buttonLabel: 'Import',
+              properties: ['openFile'],
+              filters: [{
+                name: 'JSON files',
+                extensions: ['json']
+              }]
+            }, (filePath) => {
+              if (!filePath || !filePath[0]) {
+                return;
+              }
+              try {
+                let content = fs.readFileSync(filePath[0], 'utf-8');
+                if (!content) {
+                  throw false;
+                }
+                settings.set('entries', JSON.parse(content));
+                mainWindow.reload();
+              } catch(e) {
+                dialog.showMessageBox(mainWindow, {
+                  message: 'Oops. Something went wrong...'
+                }, () => {});
+              }
+            });
+          }
         },
         {
           type: 'separator'
