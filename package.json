@@ -29,8 +29,8 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "electron-start": "electron .",
-    "electron-build": "electron-packager . --out=dist --asar --overwrite --platform=darwin,linux --arch=x64,arm64",
-    "zip-dist": "find dist/* -maxdepth 0 -type d -exec sh -c 'zip -r {}.zip {}' \\; && find dist/* -maxdepth 0 -type d -exec rm -r {} \\;",
+    "electron-build": "rm -rf dist && electron-packager . --out=dist --asar --overwrite --platform=darwin,linux --arch=x64,arm64",
+    "zip-dist": "cd dist && find ./* -maxdepth 0 -type d -exec sh -c 'zip -r {}.zip {} && rm -r {}' \\;",
     "start": "concurrently 'npm run react-start' 'wait-on http://localhost:3000/ && npm run electron-start'",
     "build": "npm run react-build && npm run electron-build && npm run zip-dist"
   },
