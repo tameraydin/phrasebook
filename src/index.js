@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 
-import PhraseBook from './components/PhraseBook';
+import PhraseBook from './containers/PhraseBook';
 import reducers from './reducers';
 import sync from './middleware/sync';
 
