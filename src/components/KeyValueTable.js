@@ -46,7 +46,8 @@ export default class KeyValueTable extends Component {
                 key={index}
                 rowIdentificator={entry.index}
                 rowKey={entry.key}
-                rowValue={entry.value} />
+                rowValue={entry.value}
+                title="Double click to edit" />
           )}
         </tbody>
       </table>
