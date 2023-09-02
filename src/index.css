@@ -36,6 +36,11 @@ input {
   padding: 6px;
   width: 100%;
 }
+input::placeholder {
+  font-style: italic;
+  font-size: 20px;
+  opacity: .25;
+}
 
 textarea {
   border: 0;

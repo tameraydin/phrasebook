@@ -5,6 +5,9 @@ import { searchEntry, addEntry } from '../actions'
 
 const mapStateToProps = state => {
   return {
+    placeholder: state.mode === SEARCH
+      ? 'Type to add a new entry or search...'
+      : '',
     value: state.search,
     disabled: state.mode !== SEARCH
   };

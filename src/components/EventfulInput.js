@@ -21,6 +21,7 @@ export default class EventfulInput extends Component {
     return (
       <input
           type='text'
+          placeholder={this.props.placeholder}
           value={this.props.value}
           disabled={this.props.disabled}
           ref={(el) => { this.domEl = el; }}

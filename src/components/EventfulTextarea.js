@@ -43,7 +43,7 @@ export default class EventfulInput extends Component {
       <textarea
           value={this.state.value}
           onChange={this.handleChange.bind(this)}
-          placeholder='Click here and start typing...'
+          placeholder='Type a value here...'
           ref={(el) => { this.domEl = el; }}
           onKeyDown={event => {
             if ((event.keyCode === 13 || event.keyCode === 9)
