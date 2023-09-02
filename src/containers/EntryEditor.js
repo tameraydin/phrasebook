@@ -49,7 +49,7 @@ const mapDispatchToProps = (dispatch) => {
       _syncEntries(dispatch, currState.entries, currState.mode);
     },
     deleteEntry: (entryIndex, initialValue) => {
-      if (window.confirm('Are you sure to DELETE this entry?')) {
+      if (window.confirm('Do you want to DELETE this entry?')) {
         let currState = dispatch(deleteEntry(entryIndex));
         _syncEntries(dispatch, currState.entries, currState.mode);
       } else {
