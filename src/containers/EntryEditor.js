@@ -17,6 +17,9 @@ class EntryEditor extends Component {
           keyText={this.props.keyText}
           valueText={this.props.valueText}
           submitHandler={(key, value) => {
+            if (key === this.props.keyText && value === this.props.valueText) {
+              return this.props.dismissEditor(this.props.initialValue);
+            }
             this.props.saveEntry(key, value, this.props.entryIndex);
           }}
           cancelHandler={this.props.mode === EDIT
