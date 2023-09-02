@@ -36,10 +36,17 @@ input {
   padding: 6px;
   width: 100%;
 }
+
 input::placeholder {
   font-style: italic;
   font-size: 20px;
   opacity: .25;
+}
+
+.mode--search input {
+  position: sticky;
+  top: 0;
+  z-index: 2;
 }
 
 textarea {
