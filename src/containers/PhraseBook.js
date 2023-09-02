@@ -4,6 +4,7 @@ import AppWrapper from './AppWrapper';
 import InputBar from './InputBar';
 import EntryEditor from './EntryEditor';
 import EntryTable from './EntryTable';
+import StatusBar from './StatusBar';
 
 class PhraseBook extends Component {
   render() {
@@ -12,6 +13,7 @@ class PhraseBook extends Component {
         <InputBar />
         <EntryEditor />
         <EntryTable />
+        <StatusBar />
       </AppWrapper>
     );
   }

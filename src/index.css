@@ -11,6 +11,7 @@ table {
   border-collapse: collapse;
   table-layout: fixed;
   width: 100%;
+  margin-bottom: 18px;
   cursor: text;
 }
 
@@ -123,4 +124,19 @@ small {
 
 .flex {
   display: flex;
+}
+
+.status {
+  box-sizing: border-box;
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  bottom: 0;
+  width: 100%;
+  background: gray;
+  color: white;
+  padding: 3px 6px;
+  font-size: 10px;
+  pointer-events: none;
 }
