@@ -16,6 +16,7 @@ class EntryEditor extends Component {
       <KeyValueEditor
           keyText={this.props.keyText}
           valueText={this.props.valueText}
+          placeholder="Type a value here..."
           submitHandler={(key, value) => {
             if (key === this.props.keyText && value === this.props.valueText) {
               return this.props.dismissEditor(this.props.initialValue);

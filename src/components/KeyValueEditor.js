@@ -6,6 +6,7 @@ export default class KeyValueEditor extends Component {
   static propTypes = {
     keyText: PropTypes.string.isRequired,
     valueText: PropTypes.string.isRequired,
+    placeholder: PropTypes.string.isRequired,
     submitHandler: PropTypes.func.isRequired,
     cancelHandler: PropTypes.func.isRequired
   }
@@ -48,12 +49,14 @@ export default class KeyValueEditor extends Component {
         <EventfulTextarea
             autoFocus={true}
             value={this.props.keyText}
+            placeholder={this.props.placeholder}
             ref={(comp) => { this.keyDomEl = comp && comp.domEl; }}
             tabHandler={this.tabHandler.bind(this)}
             submitHandler={this.submitHandler.bind(this)}
             cancelHandler={this.props.cancelHandler} />
         <EventfulTextarea
             value={this.props.valueText}
+            placeholder={this.props.placeholder}
             ref={(comp) => { this.valueDomEl = comp && comp.domEl; }}
             tabHandler={this.tabHandler.bind(this)}
             submitHandler={this.submitHandler.bind(this)}

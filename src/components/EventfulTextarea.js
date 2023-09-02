@@ -12,6 +12,7 @@ export default class EventfulInput extends Component {
 
   static propTypes = {
     value: PropTypes.string.isRequired,
+    placeholder: PropTypes.string.isRequired,
     submitHandler: PropTypes.func.isRequired,
     cancelHandler: PropTypes.func.isRequired,
     tabHandler: PropTypes.func.isRequired,
@@ -43,7 +44,7 @@ export default class EventfulInput extends Component {
       <textarea
           value={this.state.value}
           onChange={this.handleChange.bind(this)}
-          placeholder='Type a value here...'
+          placeholder={this.props.placeholder}
           ref={(el) => { this.domEl = el; }}
           onKeyDown={event => {
             if ((event.keyCode === 13 || event.keyCode === 9)
